@@ -1,0 +1,5 @@
+-   id: cairo-lint
+    name: check lint cairo
+    description: checks lint of contracts using amarna
+    entry: check-lint
+    language: python
