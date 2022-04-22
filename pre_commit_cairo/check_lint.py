@@ -49,11 +49,12 @@ def main(argv: Sequence[str] | None = None) -> int:
                     universal_newlines=True,
                     check=True,
                 )
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 console.print(
                     f"[red][bold]{filename}]: failed linting check[/bold][/red]"
                 )
-                summary = json.load(filename.replace(".cairo", ".sarif"))
+                with open(filename.replace(".cairo", ".sarif"), "r") as f:
+                    summary = json.load(f)
                 for result in summary:
                     _build_summary(result, filename)
                 retval = 1
