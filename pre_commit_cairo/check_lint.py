@@ -4,6 +4,7 @@ import argparse
 import subprocess
 import json
 from typing import Sequence
+from pathlib import Path
 
 from rich.console import Console
 from rich.table import Table
@@ -53,7 +54,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 console.print(
                     f"[red][bold]{filename}]: failed linting check[/bold][/red]"
                 )
-                with open(filename.replace(".cairo", ".sarif"), "r") as f:
+                path = Path(filename.replace(".cairo", ".sarif"))
+                with open(str(path.resolve()), "r") as f:
                     summary = json.load(f)
                 for result in summary:
                     _build_summary(result, filename)
