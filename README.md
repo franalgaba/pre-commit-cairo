@@ -10,7 +10,7 @@ Add this to your `.pre-commit-config.yaml`
 
 ```yaml
 -   repo: https://github.com/franalgaba/pre-commit-cairo
-    rev: v0.0.1  # Use the ref you want to point at
+    rev: main  # Use the ref you want to point at
     hooks:
     -   id: cairo-lint
 ```

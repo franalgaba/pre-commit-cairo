@@ -16,18 +16,20 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     retval = 0
     for filename in args.filenames:
-
-        try:
-            subprocess.run(
-                f'amarna {filename} -o {filename.replace(".cairo", ".sarif")}',
-                shell=True,
-                universal_newlines=True,
-                check=True,
-            )
-        except subprocess.CalledProcessError as e:
-            console.print(f"[red][bold]{filename}]: failed linting check[/bold][/red]")
-            console.print_exception()
-            retval = 1
+        if filename.endswith(".cairo"):
+            try:
+                subprocess.run(
+                    f'amarna {filename} -o {filename.replace(".cairo", ".sarif")}',
+                    shell=True,
+                    universal_newlines=True,
+                    check=True,
+                )
+            except subprocess.CalledProcessError as e:
+                console.print(
+                    f"[red][bold]{filename}]: failed linting check[/bold][/red]"
+                )
+                console.print_exception()
+                retval = 1
 
     return retval
 
