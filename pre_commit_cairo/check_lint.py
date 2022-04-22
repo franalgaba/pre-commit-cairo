@@ -18,7 +18,9 @@ def _build_summary(info, filename):
     table_result.add_column("level")
     table_result.add_column("message")
 
-    table_result.add_row(info["ruleId"], info["level"], info["message"]["text"])
+    table_result.add_row(
+        str(info["ruleId"]), str(info["level"]), str(info["message"]["text"])
+    )
 
     table_location = Table(title="locations")
     table_location.add_column("uri")
@@ -28,10 +30,10 @@ def _build_summary(info, filename):
 
     for location in info["locations"]:
         table_result.add_row(
-            location["physicalLocation"]["artifactLocation"]["uri"],
-            location["physicalLocation"]["region"]["startLine"],
-            location["physicalLocation"]["region"]["startColumn"],
-            location["physicalLocation"]["region"]["endColumn"],
+            str(location["physicalLocation"]["artifactLocation"]["uri"]),
+            str(location["physicalLocation"]["region"]["startLine"]),
+            str(location["physicalLocation"]["region"]["startColumn"]),
+            str(location["physicalLocation"]["region"]["endColumn"]),
         )
 
 
