@@ -13,7 +13,7 @@ console = Console()
 
 
 def _build_summary(info, filename):
-    table_result = Table(title=filename, no_wrap=True)
+    table_result = Table(title=filename, expand=True)
     table_result.add_column("ruleId")
     table_result.add_column("level")
     table_result.add_column("message")
@@ -24,7 +24,7 @@ def _build_summary(info, filename):
 
     console.print(table_result)
 
-    table_location = Table(title="locations", no_wrap=True)
+    table_location = Table(title="locations", expand=True)
     table_location.add_column("uri")
     table_location.add_column("location_line")
     table_location.add_column("location_column_start")
