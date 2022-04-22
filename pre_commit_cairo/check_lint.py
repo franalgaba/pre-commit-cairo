@@ -2,11 +2,36 @@ from __future__ import annotations
 
 import argparse
 import subprocess
+import json
 from typing import Sequence
 
 from rich.console import Console
+from rich.table import Table
 
 console = Console()
+
+
+def _build_summary(info, filename):
+    table_result = Table(title=filename)
+    table_result.add_column("ruleId")
+    table_result.add_column("level")
+    table_result.add_column("message")
+
+    table_result.add_row(info["ruleId"], info["level"], info["message"]["text"])
+
+    table_location = Table(title="locations")
+    table_location.add_column("uri")
+    table_location.add_column("location_line")
+    table_location.add_column("location_column_start")
+    table_location.add_column("location_column_end")
+
+    for location in info["locations"]:
+        table_result.add_row(
+            location["physicalLocation"]["artifactLocation"]["uri"],
+            location["physicalLocation"]["region"]["startLine"],
+            location["physicalLocation"]["region"]["startColumn"],
+            location["physicalLocation"]["region"]["endColumn"],
+        )
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -28,7 +53,9 @@ def main(argv: Sequence[str] | None = None) -> int:
                 console.print(
                     f"[red][bold]{filename}]: failed linting check[/bold][/red]"
                 )
-                console.print_exception()
+                summary = json.load(filename.replace(".cairo", ".sarif"))
+                for result in summary:
+                    _build_summary(result, filename)
                 retval = 1
 
     return retval
