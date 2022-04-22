@@ -57,8 +57,9 @@ def main(argv: Sequence[str] | None = None) -> int:
                 path = Path(filename.replace(".cairo", ".sarif"))
                 with open(str(path.resolve()), "r") as f:
                     summary = json.load(f)
-                for result in summary:
-                    _build_summary(result, filename)
+                for run in summary["runs"]:
+                    for result in run["results"]:
+                        _build_summary(result, filename)
                 retval = 1
 
     return retval
