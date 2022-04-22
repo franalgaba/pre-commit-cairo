@@ -31,7 +31,7 @@ def _build_summary(info, filename):
     table_location.add_column("location_column_end")
 
     for location in info["locations"]:
-        table_result.add_row(
+        table_location.add_row(
             str(location["physicalLocation"]["artifactLocation"]["uri"]),
             str(location["physicalLocation"]["region"]["startLine"]),
             str(location["physicalLocation"]["region"]["startColumn"]),
