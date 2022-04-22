@@ -1,4 +1,0 @@
--   repo: https://github.com/franalgaba/pre-commit-cairo.git
-    rev: v0.0.2
-    hooks:
-      -   id: cairo-lint
