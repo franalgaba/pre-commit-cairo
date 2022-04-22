@@ -19,7 +19,9 @@ Add this to your `.pre-commit-config.yaml`
 
 ### `cairo-lint`
 
-Checks lint of Cairo contracts using [Amarna](https://github.com/crytic/amarna).
+Checks lint of Cairo contracts using [Amarna](https://github.com/crytic/amarna). If it fails a summary table with results is shown as shown below:
+
+![result](./img/lint_result.png)
 
 Amarna does not have a public release yet. So, to use this hook your hook first you need to install Amarna in your project manually:
 
