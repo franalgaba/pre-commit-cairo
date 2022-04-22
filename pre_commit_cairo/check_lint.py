@@ -45,18 +45,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     retval = 0
     for filename in args.filenames:
         if filename.endswith(".cairo"):
-            try:
-                subprocess.run(
-                    f'amarna {filename} -o {filename.replace(".cairo", ".sarif")}',
-                    shell=True,
-                    universal_newlines=True,
-                    check=True,
-                )
-            except subprocess.CalledProcessError:
+            subprocess.run(
+                f'amarna {filename} -o {filename.replace(".cairo", ".sarif")}',
+                shell=True,
+                universal_newlines=True,
+                check=True,
+            )
+            path = Path(filename.replace(".cairo", ".sarif"))
+
+            if path.is_file():
                 console.print(
                     f"[red][bold]{filename}]: failed linting check[/bold][/red]"
                 )
-                path = Path(filename.replace(".cairo", ".sarif"))
                 with open(str(path.resolve()), "r") as f:
                     summary = json.load(f)
                 for run in summary["runs"]:
