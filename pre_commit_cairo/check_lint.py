@@ -22,6 +22,8 @@ def _build_summary(info, filename):
         str(info["ruleId"]), str(info["level"]), str(info["message"]["text"])
     )
 
+    console.print(table_result)
+
     table_location = Table(title="locations")
     table_location.add_column("uri")
     table_location.add_column("location_line")
@@ -35,6 +37,8 @@ def _build_summary(info, filename):
             str(location["physicalLocation"]["region"]["startColumn"]),
             str(location["physicalLocation"]["region"]["endColumn"]),
         )
+
+    console.print(table_location)
 
 
 def main(argv: Sequence[str] | None = None) -> int:

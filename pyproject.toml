@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pre-commit-cairo"
-version = "0.0.8"
+version = "0.0.9"
 description = ""
 authors = ["franalgaba <f.algaba@outlook.es>"]
 
