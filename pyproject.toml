@@ -6,7 +6,6 @@ authors = ["franalgaba <f.algaba@outlook.es>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-amarna = {git = "https://github.com/crytic/amarna.git", rev = "main"}
 rich = "^12.2.0"
 
 [tool.poetry.dev-dependencies]
