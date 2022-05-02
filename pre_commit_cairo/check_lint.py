@@ -59,7 +59,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
             if path.is_file():
                 console.print(
-                    f"[red][bold]{filename}]: failed linting check[/bold][/red]"
+                    f"[red][bold]{filename}: failed linting check[/bold][/red]"
                 )
                 with open(str(path.resolve()), "r") as f:
                     summary = json.load(f)
