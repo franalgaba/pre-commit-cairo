@@ -26,7 +26,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     retval = 0
     for filename in args.filenames:
         if filename.endswith(".cairo"):
-            prev_file = _read_file()
+            prev_file = _read_file(filename)
             try:
                 subprocess.run(
                     f"cairo-format -i {filename}",
