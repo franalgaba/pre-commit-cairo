@@ -24,7 +24,7 @@ Checks lint of Cairo contracts using [Amarna](https://github.com/crytic/amarna).
 
 ![result](./img/lint_result.png)
 
-Amarna does not have a public release yet. So, to use this hook your hook first you need to install Amarna in your project manually:
+Amarna does not have a public release yet. So, to use this hook first you need to install Amarna in your project manually:
 
 `pip install git+https://github.com/crytic/amarna.git@main`
 
