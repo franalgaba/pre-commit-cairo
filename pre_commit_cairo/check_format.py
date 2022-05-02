@@ -11,6 +11,27 @@ from rich.console import Console
 console = Console()
 
 
+def _format_output(reformatted_count, unchanged_count, failed_count):
+    console.print("All done! :sparkles: :cake: :sparkles:")
+    final_output = []
+    if reformatted_count > 0:
+        if reformatted_count > 1:
+            final_output.append(f"{reformatted_count} files reformatted")
+        else:
+            final_output.append(f"{reformatted_count} file reformatted")
+    if unchanged_count > 0:
+        if unchanged_count > 1:
+            final_output.append(f"{reformatted_count} files left unchanged")
+        else:
+            final_output.append(f"{reformatted_count} file left unchanged")
+    if failed_count > 0:
+        if failed_count > 1:
+            final_output.append(f"{failed_count} files failed to reformat")
+        else:
+            final_output.append(f"{failed_count} file failed to reformat")
+    console.print(", ".join(final_output))
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("filenames", nargs="*")
@@ -43,27 +64,11 @@ def main(argv: Sequence[str] | None = None) -> int:
                 else:
                     unchanged_count += 1
 
-    console.print("All done! :sparkles: :cake: :sparkles:")
-    final_output = []
-    if reformatted_count > 0:
-        if reformatted_count > 1:
-            final_output.append(f"{reformatted_count} files reformatted")
-        else:
-            final_output.append(f"{reformatted_count} file reformatted")
-    if unchanged_count > 0:
-        if unchanged_count > 1:
-            final_output.append(f"{reformatted_count} files left unchanged")
-        else:
-            final_output.append(f"{reformatted_count} file left unchanged")
-    if failed_count > 0:
-        if failed_count > 1:
-            final_output.append(f"{failed_count} files failed to reformat")
-        else:
-            final_output.append(f"{failed_count} file failed to reformat")
-    console.print(", ".join(final_output))
-
-    return retval
+    return retval, reformatted_count, unchanged_count, failed_count
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    retval, reformatted_count, unchanged_count, failed_count = main()
+    _format_output(reformatted_count, unchanged_count, failed_count)
+
+    raise SystemExit(retval)
