@@ -3,3 +3,9 @@
     description: checks lint of contracts using amarna
     entry: check-lint
     language: python
+
+-   id: cairo-format
+    name: check format cairo
+    description: checks formatting of contracts using cairo-format
+    entry: check-format
+    language: python

@@ -13,6 +13,7 @@ Add this to your `.pre-commit-config.yaml`
     rev: main  # Use the ref you want to point at
     hooks:
     -   id: cairo-lint
+    -   id: cairo-format
 ```
 
 ## Hooks available
@@ -32,3 +33,7 @@ or
 `poetry add git+https://github.com/crytic/amarna.git@main`
 
 After a public release for Amarna is made, the hook will install it automatically.
+
+### `cairo-format`
+
+Checks format of Cairo contracts using cairo-lang built in tool `cairo-format`. Command will be run with the `-i` flag.
