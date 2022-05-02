@@ -2,4 +2,4 @@ from pre_commit_cairo import __version__
 
 
 def test_version():
-    assert __version__ == "0.0.14"
+    assert __version__ == "0.0.15"
