@@ -65,8 +65,11 @@ def main(argv: Sequence[str] | None = None) -> int:
                     summary = json.load(f)
                 for run in summary["runs"]:
                     for result in run["results"]:
-                        _build_summary(result, filename)
-                retval = 1
+                        # Remove output and hook error if arithmetic warning.
+                        # The arithmetic rule only warns of operands usage
+                        if "arithmetic" not in result["ruleId"]:
+                            _build_summary(result, filename)
+                            retval = 1
 
     return retval
 
